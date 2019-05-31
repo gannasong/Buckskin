@@ -7,7 +7,6 @@ cache:
     - Pods
   
 before_install:
-
   - export LANG=en_US.UTF-8
   - brew update
   - bundle install
