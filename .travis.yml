@@ -22,6 +22,6 @@ before_script:
 script:
   - xcodebuild -workspace Buckskin.xcworkspace -scheme Buckskin -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO | xcpretty -c
 
-# notifications:
-#   email: false
-#   slack: 
+notifications:
+  email: false
+  slack: polydice:sIHbPAtvEmpZoZiLWEYDELsC
