@@ -1,6 +1,7 @@
-app_identifier("com.min.Buckskin")
+app_identifier("com.min.Buckskin") # The bundle identifier of your app
 apple_id("qwer810520@gmail.com") # Your Apple email address
 
-# 設定帳號
-# For more information about the Appfile, see:
-#     https://docs.fastlane.tools/advanced/#appfile
+# You can uncomment any of the lines below and add your own
+# team selection in case you're in multiple teams
+team_name "Kai Min Chang"
+team_id "ZLWY9M752A"
