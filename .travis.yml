@@ -7,7 +7,6 @@ cache:
     - Pods
   
 before_install:
-
   - export LANG=en_US.UTF-8
   - brew update
   - bundle install
@@ -20,7 +19,8 @@ before_script:
   #- bundle exec danger 
   
 script:
-  - xcodebuild -workspace Buckskin.xcworkspace -scheme Buckskin -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO | xcpretty -c
+  # - xcodebuild -workspace Buckskin.xcworkspace -scheme Buckskin -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO | xcpretty -c
+  - make travis
 
 notifications:
   email: false
@@ -32,4 +32,3 @@ notifications:
       - "Repo `%{repository_slug}` *%{result}* build (<%{build_url}|#%{build_number}>) for commit (<%{compare_url}|%{commit}>) on branch `%{branch}`."
       - "Execution time: *%{duration}*"
       - "Message: %{message}"
-      
