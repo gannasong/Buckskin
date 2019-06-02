@@ -15,23 +15,25 @@
 
 default_platform(:ios)
 
+app_ids = ["com.min.Buckskin"]
+
 platform :ios do
   before_all do
     # binding.pry # Debugging
     # Carthage & CocoaPods dependencies are already installed
     clear_derived_data
-    setup_ci
+    setup_travis
   end
 
   desc "Build, test, and archive a completed feature on the develop branch."
   lane :develop do
-    match
     build
   end
 
   desc "Just build the project"
   lane :build do |options|
     match(type: 'development')
+    # prepare(type: 'development')
     xcodebuild(
       workspace: "Buckskin.xcworkspace",
       scheme: "Buckskin",
@@ -41,7 +43,19 @@ platform :ios do
       destination: "generic/platform=iOS"
     )
   end
-  
+
+  # Aliases
+
+  desc "Prepare required provisioning profiles for each target"
+  lane :prepare do |options|
+    match(
+      app_identifier: app_ids,
+      type: options[:type],
+      readonly: true,
+      force: true
+    )
+  end
+
   # Post Actions
 
   # This block is called, only if the executed lane was successful
@@ -62,4 +76,6 @@ platform :ios do
         default_payloads: [:lane, :git_branch, :last_git_commit]
       )
     end
+
+
 end
