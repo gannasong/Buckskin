@@ -32,8 +32,8 @@ platform :ios do
 
   desc "Just build the project"
   lane :build do |options|
-    match(type: 'development')
-    # prepare(type: 'development')
+    #match(type: 'development')
+    prepare(type: 'development')
     xcodebuild(
       workspace: "Buckskin.xcworkspace",
       scheme: "Buckskin",
@@ -50,9 +50,7 @@ platform :ios do
   lane :prepare do |options|
     match(
       app_identifier: app_ids,
-      type: options[:type],
-      readonly: true,
-      force: true
+      type: options[:type]
     )
   end
 
