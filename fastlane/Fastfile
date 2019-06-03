@@ -32,7 +32,7 @@ platform :ios do
 
   desc "Just build the project"
   lane :build do |options|
-    #match(type: 'development')
+    # match(type: 'development')
     prepare(type: 'development')
     xcodebuild(
       workspace: "Buckskin.xcworkspace",
@@ -64,16 +64,14 @@ platform :ios do
       payload: { :Version => version_with_build },
       default_payloads: [:lane, :git_branch, :last_git_commit]
     ) 
-    end
+  end
 
-    error do |lane, exception|
-      next unless ENV["SLACK_URL"]
-      slack(
-        message: exception.message,
-        success: false,
-        default_payloads: [:lane, :git_branch, :last_git_commit]
-      )
-    end
-
-
+  error do |lane, exception|
+    next unless ENV["SLACK_URL"]
+    slack(
+      message: exception.message,
+      success: false,
+      default_payloads: [:lane, :git_branch, :last_git_commit]
+    )
+  end
 end
