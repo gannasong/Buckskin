@@ -27,13 +27,14 @@ platform :ios do
 
   desc "Build, test, and archive a completed feature on the develop branch."
   lane :develop do
+    match
     build
   end
 
   desc "Just build the project"
   lane :build do |options|
     # match(type: 'development')
-    prepare(type: 'development')
+    # prepare(type: 'development')
     xcodebuild(
       workspace: "Buckskin.xcworkspace",
       scheme: "Buckskin",
