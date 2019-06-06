@@ -27,14 +27,12 @@ platform :ios do
 
   desc "Build, test, and archive a completed feature on the develop branch."
   lane :develop do
-    match
     build
   end
 
   desc "Just build the project"
   lane :build do |options|
-    # match(type: 'development')
-    # prepare(type: 'development')
+    prepare(type: 'development')
     xcodebuild(
       workspace: "Buckskin.xcworkspace",
       scheme: "Buckskin",
@@ -59,10 +57,10 @@ platform :ios do
 
   # This block is called, only if the executed lane was successful
   after_all do |lane|
-    next unless test ENV["SLACK_URL"]
+    next unless ENV["SLACK_URL"]
     slack(
       message: "Build succeeded",
-      payload: { :Version => version_with_build },
+      # payload: { :Version => version_with_build },
       default_payloads: [:lane, :git_branch, :last_git_commit]
     ) 
   end
